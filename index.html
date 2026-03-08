@@ -1,0 +1,357 @@
+```html
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Анударьдаа 💖</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+color:white;
+position:relative;
+background:radial-gradient(circle at bottom,#1b2735,#090a0f);
+}
+
+/* moon */
+
+.moon{
+position:fixed;
+top:70px;
+right:80px;
+width:130px;
+height:130px;
+background:#fff;
+border-radius:50%;
+box-shadow:0 0 60px #fff,0 0 120px #fff;
+opacity:0.9;
+}
+
+/* stars */
+
+.star{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+0%{opacity:0.2}
+100%{opacity:1}
+}
+
+/* shooting star */
+
+.shooting{
+position:fixed;
+width:2px;
+height:100px;
+background:linear-gradient(white,transparent);
+transform:rotate(45deg);
+animation:shoot 2s linear forwards;
+}
+
+@keyframes shoot{
+0%{opacity:1; transform:translate(0,0) rotate(45deg);}
+100%{opacity:0; transform:translate(500px,500px) rotate(45deg);}
+}
+
+/* title */
+
+h1{
+margin-top:90px;
+color:#ff9fc6;
+font-size:42px;
+text-shadow:0 0 20px #ff6fa5;
+}
+
+p{
+font-size:20px;
+line-height:1.6;
+}
+
+/* buttons */
+
+button{
+padding:14px 35px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff2e63;
+color:white;
+cursor:pointer;
+margin:10px;
+transition:0.3s;
+box-shadow:0 0 15px #ff2e63;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 35px #ff2e63;
+}
+
+/* surprise message */
+
+#surprise{
+display:none;
+font-size:22px;
+color:#ffd1dc;
+max-width:600px;
+margin:30px auto;
+line-height:1.6;
+font-weight:bold;
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+#answer{
+margin-top:20px;
+font-size:24px;
+color:#ffd1dc;
+text-shadow:0 0 10px #ff6fa5;
+}
+
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:26px;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-1100px)}
+}
+
+/* flowers */
+
+.flower{
+position:fixed;
+top:-20px;
+font-size:28px;
+animation:fall 9s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px)}
+100%{transform:translateY(1100px)}
+}
+
+/* heart explosion */
+
+.explosion{
+position:fixed;
+font-size:24px;
+pointer-events:none;
+animation:explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+0%{opacity:1;transform:scale(1)}
+100%{opacity:0;transform:scale(2.5) translate(var(--x),var(--y))}
+}
+
+/* cursor hearts */
+
+.cursorHeart{
+position:fixed;
+font-size:16px;
+pointer-events:none;
+animation:fade 1s linear forwards;
+}
+
+@keyframes fade{
+0%{opacity:1}
+100%{opacity:0; transform:translateY(-20px)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<h1>Миний гайхамшигт Анударьдаа 💖</h1>
+
+<p>
+ Эмэгтэйчүүдийн эрхийг хамгаалах өдрийн мэнд ❤️<br>
+ Өнөөдөр чиний өдөр шүү ✨
+</p>
+
+<button onclick="start()">Click Me 💌</button>
+
+<div id="surprise">
+
+Сайхан амарсан уу? Миний охин үнхээр мундаг байгаа шүүү 😘<br><br>
+
+Чи миний өдөр бүрийг илүү гоё болгодог хүн❤️<br>
+чи минь өдөр бүр инээмсэлгэж байгаарай😊
+
+</div>
+
+<h2 style="margin-top:40px;">Are you my princess? 👑</h2>
+
+<button onclick="yes()">Yes 💖</button>
+<button id="noBtn" onmouseover="move()">No 😅</button>
+
+<div id="answer"></div>
+
+<script>
+
+/* stars */
+
+for(let i=0;i<200;i++){
+
+let star=document.createElement("div")
+star.className="star"
+
+star.style.top=Math.random()*100+"%"
+star.style.left=Math.random()*100+"%"
+
+document.body.appendChild(star)
+
+}
+
+/* shooting stars */
+
+setInterval(()=>{
+
+let s=document.createElement("div")
+s.className="shooting"
+
+s.style.top=Math.random()*200+"px"
+s.style.left=Math.random()*300+"px"
+
+document.body.appendChild(s)
+
+setTimeout(()=>s.remove(),2000)
+
+},4000)
+
+/* floating hearts */
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"%"
+heart.style.animationDuration=(4+Math.random()*5)+"s"
+
+document.body.appendChild(heart)
+
+}
+
+/* flowers */
+
+for(let i=0;i<18;i++){
+
+let flower=document.createElement("div")
+flower.className="flower"
+flower.innerHTML="🌸"
+
+flower.style.left=Math.random()*100+"%"
+flower.style.animationDuration=(6+Math.random()*6)+"s"
+
+document.body.appendChild(flower)
+
+}
+
+/* start */
+
+function start(){
+document.getElementById("surprise").style.display="block"
+}
+
+/* yes */
+
+function yes(){
+
+document.getElementById("answer").innerHTML=
+"I Knew it love u bby 👑❤️"
+
+explodeHearts(90)
+
+}
+
+/* no button */
+
+function move(){
+
+let btn=document.getElementById("noBtn")
+
+let x=Math.random()*(window.innerWidth-100)
+let y=Math.random()*(window.innerHeight-50)
+
+btn.style.position="absolute"
+btn.style.left=x+"px"
+btn.style.top=y+"px"
+
+}
+
+/* explosion */
+
+function explodeHearts(count){
+
+for(let i=0;i<count;i++){
+
+let h=document.createElement("div")
+h.className="explosion"
+h.innerHTML="❤️"
+
+let angle=Math.random()*2*Math.PI
+let distance=Math.random()*250
+
+h.style.setProperty("--x",distance*Math.cos(angle)+"px")
+h.style.setProperty("--y",distance*Math.sin(angle)+"px")
+
+h.style.left="50%"
+h.style.top="50%"
+
+document.body.appendChild(h)
+
+setTimeout(()=>h.remove(),1200)
+
+}
+
+}
+
+/* cursor hearts */
+
+document.addEventListener("mousemove",e=>{
+
+let h=document.createElement("div")
+h.className="cursorHeart"
+h.innerHTML="❤️"
+
+h.style.left=e.clientX+"px"
+h.style.top=e.clientY+"px"
+
+document.body.appendChild(h)
+
+setTimeout(()=>h.remove(),1000)
+
+})
+
+</script>
+
+</body>
+</html>
+```
