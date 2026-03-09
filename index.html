@@ -66,6 +66,7 @@ position:fixed;
 top:-20px;
 font-size:24px;
 animation:rainFall 4s linear forwards;
+pointer-events:none;
 }
 
 @keyframes rainFall{
@@ -111,6 +112,7 @@ text-shadow:0 0 20px #ff6fa5;
 
 p{
 font-size:20px;
+line-height:1.6;
 }
 
 button{
@@ -122,6 +124,13 @@ background:#ff2e63;
 color:white;
 cursor:pointer;
 margin:10px;
+transition:0.3s;
+box-shadow:0 0 15px #ff2e63;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 35px #ff2e63;
 }
 
 #surprise{
@@ -133,6 +142,34 @@ margin:30px auto;
 background:rgba(255,255,255,0.08);
 padding:20px;
 border-radius:20px;
+backdrop-filter:blur(10px);
+}
+
+#answer{
+margin-top:20px;
+font-size:24px;
+color:#ffd1dc;
+}
+
+/* mobile responsive */
+
+@media (max-width:600px){
+
+h1{
+font-size:28px;
+margin-top:60px;
+}
+
+p{
+font-size:18px;
+padding:0 20px;
+}
+
+button{
+font-size:16px;
+padding:12px 24px;
+}
+
 }
 
 </style>
@@ -161,7 +198,7 @@ border-radius:20px;
 <h2 style="margin-top:40px;">Үнсийдааа гүнжээ 👑</h2>
 
 <button onclick="yes()">Yes 💖</button>
-<button id="noBtn" onmouseover="move()">No 😅</button>
+<button id="noBtn" onclick="move()" onmouseover="move()">No 😅</button>
 
 <div id="answer"></div>
 
@@ -187,7 +224,7 @@ r.style.left=Math.random()*100+"%"
 document.body.appendChild(r)
 }
 
-/* hearts */
+/* floating hearts */
 
 for(let i=0;i<25;i++){
 let h=document.createElement("div")
@@ -212,44 +249,62 @@ document.getElementById("answer").innerHTML=
 
 heartRain()
 fireworks()
+
 }
 
 /* heart rain */
 
 function heartRain(){
-for(let i=0;i<80;i++){
+for(let i=0;i<120;i++){
+
 let h=document.createElement("div")
 h.className="rainHeart"
 h.innerHTML="💗"
+
 h.style.left=Math.random()*100+"%"
+h.style.animationDuration=(3+Math.random()*2)+"s"
+
 document.body.appendChild(h)
+
 setTimeout(()=>h.remove(),4000)
+
 }
 }
 
 /* fireworks */
 
 function fireworks(){
-for(let i=0;i<20;i++){
+
+for(let i=0;i<25;i++){
+
 let f=document.createElement("div")
 f.className="firework"
 f.innerHTML="✨"
+
 f.style.left=Math.random()*100+"%"
 f.style.top=Math.random()*100+"%"
+
 document.body.appendChild(f)
+
 setTimeout(()=>f.remove(),1000)
-}
+
 }
 
-/* no button */
+}
+
+/* no button move */
 
 function move(){
+
 let btn=document.getElementById("noBtn")
+
 let x=Math.random()*(window.innerWidth-100)
 let y=Math.random()*(window.innerHeight-50)
+
 btn.style.position="absolute"
 btn.style.left=x+"px"
 btn.style.top=y+"px"
+
 }
 
 </script>
