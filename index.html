@@ -11,22 +11,10 @@ body{
 margin:0;
 font-family:Arial;
 text-align:center;
-overflow:hidden;
 color:white;
-background:radial-gradient(circle at bottom,#1b2735,#090a0f);
-}
-
-/* moon */
-
-.moon{
-position:fixed;
-top:70px;
-right:80px;
-width:130px;
-height:130px;
-background:#fff;
-border-radius:50%;
-box-shadow:0 0 60px #fff,0 0 120px #fff;
+overflow-x:hidden;
+background:linear-gradient(180deg,#1a1a2e,#16213e,#0f3460,#090a0f);
+min-height:200vh;
 }
 
 /* stars */
@@ -151,7 +139,7 @@ font-size:24px;
 color:#ffd1dc;
 }
 
-/* mobile responsive */
+/* mobile */
 
 @media (max-width:600px){
 
@@ -176,8 +164,6 @@ padding:12px 24px;
 </head>
 
 <body>
-
-<div class="moon"></div>
 
 <h1>Сайхан амарсан уу гүнжээ 😙❣️💖</h1>
 
@@ -255,6 +241,7 @@ fireworks()
 /* heart rain */
 
 function heartRain(){
+
 for(let i=0;i<120;i++){
 
 let h=document.createElement("div")
@@ -269,6 +256,7 @@ document.body.appendChild(h)
 setTimeout(()=>h.remove(),4000)
 
 }
+
 }
 
 /* fireworks */
@@ -292,7 +280,7 @@ setTimeout(()=>f.remove(),1000)
 
 }
 
-/* no button move */
+/* no button */
 
 function move(){
 
